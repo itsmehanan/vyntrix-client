@@ -1,7 +1,7 @@
 name: Build Vyntrix Client
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -9,27 +9,32 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-
+      
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
-
+          cache: 'npm'
+          
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-pc-windows-msvc
 
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm install
+          npm install -g @tauri-apps/cli
 
       - name: Build Vyntrix
-        run: npm run tauri build
-
-      - name: List files for debug
-        run: dir /s src-tauri\target\release\bundle
-
+        run: npx tauri build
+        
       - name: Upload Installer
         uses: actions/upload-artifact@v4
         with:
           name: Vyntrix-Installer
-          path: src-tauri/target/release/bundle/**/*.msi
-          if-no-files-found: warn
+          path: |
+            src-tauri/target/release/bundle/msi/*.msi
+            src-tauri/target/release/bundle/setup.exe
+            src-tauri/target/release/*.exe
+          if-no-files-found: error
