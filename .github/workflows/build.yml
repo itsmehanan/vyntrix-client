@@ -17,10 +17,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: "npm"
 
       - name: Install Rust
-        uses: dtolnay/rust-toolchain@v1
+        uses: dtolnay/rust-toolchain @v1
         with:
           toolchain: stable
 
@@ -34,5 +33,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Vyntrix-Installer
-          path: src-tauri/target/release/bundle/**/*.msi
-          if-no-files-found: warn
+          path: |
+            src-tauri/target/release/bundle/msi/*.msi
+            src-tauri/target/release/bundle/setup.exe
+          if-no-files-found: error
