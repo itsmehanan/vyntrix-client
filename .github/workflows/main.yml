@@ -1,37 +1,23 @@
-name: Build Vyntrix Client
-on:
-  push:
-    branches: [ "main" ]
-  workflow_dispatch:
-
-jobs:
-  build:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - name: Install Rust
-        uses: dtolnay/rust-toolchain@stable
-
-      - name: Install dependencies
-        run: |
-          npm install --no-package-lock
-          npm install -g @tauri-apps/cli
-
-      - name: Build Tauri App
-        run: npx tauri build
-
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: Vyntrix-Installer
-          path: |
-            src-tauri/target/release/bundle/msi/*.msi
-            src-tauri/target/release/bundle/setup.exe
-            src-tauri/target/release/bundle/nsis/*.exe
-          if-no-files-found: error
+bmFtZTogQnVpbGQgVnludHJpeCBDbGllbnQKCm9uOgogIHB1c2g6CiAgICBi
+cmFuY2hlczogWyAibWFpbiIgXQogIHdvcmtmbG93X2Rpc3BhdGNoOgoKam9i
+czoKICBidWlsZDoKICAgIHJ1bnMtb246IHdpbmRvd3MtbGF0ZXN0CgogICAg
+c3RlcHM6CiAgICAgIC0gbmFtZTogQ2hlY2tvdXQgcmVwb3NpdG9yeQogICAg
+ICAgIHVzZXM6IGFjdGlvbnMvY2hlY2tvdXRAdjQKCiAgICAgIC0gbmFtZTog
+U2V0dXAgTm9kZS5qcwogICAgICAgIHVzZXM6IGFjdGlvbnMvc2V0dXAtbm9k
+ZUB2NAogICAgICAgIHdpdGg6CiAgICAgICAgICBub2RlLXZlcnNpb246IDIy
+CgogICAgICAtIG5hbWU6IEluc3RhbGwgUnVzdAogICAgICAgIHVzZXM6IGRy
+d3N5bmVzL3VzZS1ydXN0QHYxCiAgICAgICAgd2l0aDoKICAgICAgICAgIHRh
+cmdldDogeDg2XzY0LXBjLXdpbmRvd3MtbXN2YwoKICAgICAgLSBuYW1lOiBQ
+cmVwYXJlIEZyb250ZW5kCiAgICAgICAgcnVuOiB8CiAgICAgICAgICBta2Rp
+ciAtcCBkaXN0CiAgICAgICAgICBlY2hvICInPGh0bWw+PGJvZHk+PGgxPlZ5
+bnRyaXggQ2xpZW50PC9oMT48L2JvZHk+PC9odG1sPicgPiBkaXN0L2luZGV4
+Lmh0bWwKCiAgICAgIC0gbmFtZTogSW5zdGFsbCBkZXBlbmRlbmNpZXMKICAg
+ICAgICBydW46IG5wbSBpbnN0YWxsCgogICAgICAtIG5hbWU6IEJ1aWxkIFRh
+dXJpIEFwcAogICAgICAgIHVzZXM6IHRhdXJpLWFwcHMvdGF1cmktYWN0aW9u
+QHYwCiAgICAgICAgZW52OgogICAgICAgICAgR0lUSFVCX1RPS0VOOiB7eyBz
+ZWNyZXRzLkdJVEhVQl9UT0tFTiB9fQogICAgICAgIHdpdGg6CiAgICAgICAg
+ICB0YXJ0ZXRzOiB4ODZfNjQtcGMtd2luZG93cy1tc3ZjCgogICAgICAtIG5h
+bWU6IFVwbG9hZCBBcnRpZmFjdHMKICAgICAgICB1c2VzOiBhY3Rpb25zL3Vw
+bG9hZC1hcnRpZmFjdEB2NAogICAgICAgIHdpdGg6CiAgICAgICAgICBuYW1l
+OiBWeW50cml4LUluc3RhbGxlcgogICAgICAgICAgcGF0aDogc3JjLWF1cmkv
+dGFyZ2V0L3JlbGVhc2UvYnVuZGxlL21zaS8qLm1zaQo=
