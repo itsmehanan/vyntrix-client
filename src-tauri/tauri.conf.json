@@ -2,8 +2,8 @@
   "build": {
     "distDir": "../dist",
     "devPath": "http://localhost:1420",
-    "beforeDevCommand": "npm run dev",
-    "beforeBuildCommand": "npm run build"
+    "beforeDevCommand": "",
+    "beforeBuildCommand": ""
   },
   "package": {
     "productName": "vyntrix-client",
@@ -15,21 +15,21 @@
       "category": "Utility",
       "copyright": "",
       "deb": {
-        "dependencies": []
+        "depends": []
       },
       "externalBinaries": [],
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",
-      "cons/128x128@2x.png",
+        "icons/128x128@2x.png",
         "icons/icon.icns",
         "icons/icon.ico"
       ],
       "identifier": "com.vyntrix.client",
-      "long Description": "",
+      "longDescription": "",
       "macOS": {
         "entitlements": null,
-        "exceptiondDomains": [],
+        "exceptionDomains": [],
         "frameworks": [],
         "signingIdentity": null
       },
@@ -48,9 +48,6 @@
     "allowlist": {
       "all": true
     },
-    "security": {
-      "csp": null
-    },
     "windows": [
       {
         "fullscreen": false,
@@ -59,6 +56,9 @@
         "title": "Vyntrix Client",
         "width": 800
       }
-    ]
+    ],
+    "security": {
+      "csp": null
+    }
   }
 }

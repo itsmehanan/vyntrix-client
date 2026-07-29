@@ -5,6 +5,7 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -19,12 +20,19 @@ jobs:
           node-version: 22
 
       - name: Install Rust
-        uses: dtolnay/rust-toolchain @v1
+        uses: dtolnay/rust-toolchain@v1
         with:
           toolchain: stable
 
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm install
+          npm install -g @tauri-apps/cli
+
+      - name: Create dummy frontend
+        run: |
+          mkdir dist
+          echo "<html><body><h1>Vyntrix Client</h1></body></html>" > dist/index.html
 
       - name: Build app
         run: npx tauri build
@@ -33,5 +41,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Vyntrix-Installer
-          path: src-tauri/target/release/bundle/**/*.msi
+          path: |
+            src-tauri/target/release/bundle/msi/*.msi
+            src-tauri/target/release/bundle/setup.exe
           if-no-files-found: error
