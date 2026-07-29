@@ -1,10 +1,8 @@
-name: "Build Vyntrix Client"
-
+name: Build Vyntrix Client
 on:
   push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -20,18 +18,16 @@ jobs:
           node-version: 22
 
       - name: Install Rust
-        uses: dtolnay/rust-toolchain@v1
+        uses: dtolnay/rust-toolchain@stable
         with:
-          toolchain: stable
+          targets: x86_64-pc-windows-msvc
 
       - name: Install dependencies
-        run: |
-          npm install
-          npm install -g @tauri-apps/cli
+        run: npm install
 
       - name: Create dummy frontend
         run: |
-          mkdir dist
+          mkdir -p dist
           echo "<html><body><h1>Vyntrix Client</h1></body></html>" > dist/index.html
 
       - name: Build app
@@ -43,5 +39,5 @@ jobs:
           name: Vyntrix-Installer
           path: |
             src-tauri/target/release/bundle/msi/*.msi
-            src-tauri/target/release/bundle/setup.exe
+            src-tauri/target/release/bundle/exe/*.exe
           if-no-files-found: error

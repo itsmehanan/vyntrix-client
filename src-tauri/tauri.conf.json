@@ -1,23 +1,27 @@
 {
   "build": {
-    "distDir": "../dist",
-    "devPath": "http://localhost:1420",
+    "beforeBuildCommand": "",
     "beforeDevCommand": "",
-    "beforeBuildCommand": ""
+    "devPath": "../dist",
+    "distDir": "../dist",
+    "withGlobalTauri": false
   },
   "package": {
-    "productName": "vyntrix-client",
-    "version": "1.0.0"
+    "productName": "Vyntrix",
+    "version": "0.1.0"
   },
   "tauri": {
+    "allowlist": {
+      "all": true
+    },
     "bundle": {
       "active": true,
-      "category": "Utility",
+      "category": "DeveloperTool",
       "copyright": "",
       "deb": {
         "depends": []
       },
-      "externalBinaries": [],
+      "externalBin": [],
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",
@@ -29,24 +33,22 @@
       "longDescription": "",
       "macOS": {
         "entitlements": null,
-        "exceptionDomains": [],
+        "exceptionDomain": "",
         "frameworks": [],
+        "providerBundleIdentifier": null,
         "signingIdentity": null
       },
       "resources": [],
       "shortDescription": "",
       "targets": "all",
       "windows": {
-        "certificatePath": null,
-        "digestAlgorithm": null,
-        "password": null,
-        "wix": {
-          "language": "en-US"
-        }
+        "certificateThumbprint": null,
+        "digestAlgorithm": "sha256",
+        "timestampServer": ""
       }
     },
-    "allowlist": {
-      "all": true
+    "security": {
+      "csp": null
     },
     "windows": [
       {
@@ -56,9 +58,6 @@
         "title": "Vyntrix Client",
         "width": 800
       }
-    ],
-    "security": {
-      "csp": null
-    }
+    ]
   }
 }
